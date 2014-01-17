@@ -86,8 +86,8 @@ module Searchable
 
   def update_index!
     if destroyed? || (self.class.searchable.options.if && (self.send(self.class.searchable.options.if) == false  || self.send(self.class.searchable.options.if) == nil))
-      if self.class.elasticsearch.exists(index: Client.configuration[:index].name, type: self.class.searchable.options.as || self.class.name.underscore, id: id)
-        self.class.elasticsearch.delete(index: Client.configuration[:index].name, type: self.class.searchable.options.as || self.class.name.underscore, id: id)
+      if Client.instance.exists(index: Client.configuration[:index].name, type: self.class.searchable.options.as || self.class.name.underscore, id: id)
+        Client.instance.delete(index: Client.configuration[:index].name, type: self.class.searchable.options.as || self.class.name.underscore, id: id)
       end
     else
       Client.instance.index(
