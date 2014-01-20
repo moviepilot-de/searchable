@@ -24,7 +24,7 @@ module Searchable
       unless Client.instance.indices.exists(index: Client.configuration[:index].name)
         Client.instance.indices.create(
           index: Client.configuration[:index].name,
-          body: {settings: Client.configuration[:index].settings}
+          body: Client.configuration[:index].except(:name)
         )
       end
 
