@@ -4,6 +4,8 @@ module Searchable
   included do
     after_save :update_index
     after_destroy :update_index
+
+    attr_accessor :_score
   end
 
   module ClassMethods

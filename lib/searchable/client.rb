@@ -21,7 +21,11 @@ module Searchable
       response['hits']['hits'].group_by { |hit| hit['_type'] }.each do |type, items|
         records[type] = type.classify.constantize.where(id: items.map { |hit| hit['_id'] })
       end
-      items = response['hits']['hits'].map { |hit| records[hit['_type']].detect { |record| record.id.to_s == hit['_id'] } }.compact
+      items = response['hits']['hits'].map do |hit|
+        item = records[hit['_type']].detect { |record| record.id.to_s == hit['_id'] }
+        item._score = hit['_score'] if item
+        item
+      end.compact
 
       results = Results.new(items, response['hits']['total'], page, arguments[:body][:size])
       if response['facets'].present?
