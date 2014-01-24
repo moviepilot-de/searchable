@@ -11,7 +11,11 @@ module Searchable
     end
 
     def self.instance
-      @client ||= Elasticsearch::Client.new(hosts: configuration.hosts)
+      @client ||= Elasticsearch::Client.new({
+        hosts: configuration.hosts,
+        retry_on_failure: true,
+        reload_connections: true
+      })
     end
 
     def self.search(arguments, page = 1)
