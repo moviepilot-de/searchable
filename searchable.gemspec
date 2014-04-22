@@ -19,7 +19,10 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'bundler', '~> 1.5'
   spec.add_development_dependency 'rake'
+  spec.add_development_dependency 'rspec', '~> 2.12.0'
+  spec.add_development_dependency 'sqlite3'
 
+  spec.add_runtime_dependency 'rails'
   spec.add_runtime_dependency 'hashr', '~> 0.0.22'
   spec.add_runtime_dependency 'elasticsearch', '~> 0.4.7'
   spec.add_runtime_dependency 'ruby-progressbar', '~> 1.2.0'

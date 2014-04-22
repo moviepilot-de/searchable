@@ -1,5 +1,6 @@
 require 'hashr'
 require 'elasticsearch'
+require 'rails/railtie'
 require 'active_support/concern'
 require 'ruby-progressbar'
 
