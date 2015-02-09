@@ -59,7 +59,13 @@ module Searchable
             }
           }
         end.compact
-        Client.instance.bulk(body: bulk)
+
+        begin
+          Client.instance.bulk(body: bulk)
+        rescue Exception => e
+          puts e.message
+        end
+
         progressbar.progress += batch.size unless progressbar.progress + batch.size > total
       end
       progressbar.finish unless progressbar.progress == total

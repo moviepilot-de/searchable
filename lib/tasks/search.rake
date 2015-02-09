@@ -1,5 +1,4 @@
 namespace :search do
-
   desc 'Do a full reindex of all searchable models.'
   task :reindex => :environment do
     index = Rails.application.config.elasticsearch['index']['name']
@@ -10,5 +9,4 @@ namespace :search do
       model.reindex!
     end
   end
-
 end
