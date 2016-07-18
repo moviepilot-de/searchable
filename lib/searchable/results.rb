@@ -1,7 +1,5 @@
 module Searchable
-
   class Results < Array
-
     def initialize(items, total, page = nil, per = 20)
       @total = total
       @page = page
@@ -26,14 +24,12 @@ module Searchable
       (@total.to_f / limit_value.to_f).ceil
     end
 
-    def facets=(facets)
-      @factes = facets
+    def aggregations=(aggregations)
+      @aggregations = aggregations
     end
 
-    def facets
-      @factes || []
+    def aggregations
+      @aggregations || []
     end
-
   end
-
 end

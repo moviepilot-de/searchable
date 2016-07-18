@@ -1,7 +1,5 @@
 module Searchable
-
   class Client
-
     def self.configuration
       @configuration ||= Hashr.new(Rails.application.config.elasticsearch, {
         index: {
@@ -32,13 +30,11 @@ module Searchable
       end.compact
 
       results = Results.new(items, response['hits']['total'], page, arguments[:body][:size])
-      if response['facets'].present?
-        results.facets = Hash[response['facets'].map { |key, facet| [key, Hash[ facet['terms'].map { |term| [term['term'], term['count']] }] ] }]
+      if response['aggregations'].present?
+        results.aggregations = Hash[response['aggregations'].map { |key, facet| [key, Hash[ facet['buckets'].map { |term| [term['key'], term['doc_count']] }] ] }]
       end
 
       results
     end
-
   end
-
 end
