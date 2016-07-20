@@ -31,10 +31,6 @@ module Searchable
         )
       end
 
-      if Client.instance.indices.exists_type(index: Client.configuration[:index].name, type: self.searchable.options.as || self.name.underscore)
-        Client.instance.perform_request(:delete, "/#{Client.configuration[:index].name}/#{self.searchable.options.as || self.name.underscore}")
-      end
-
       if @searchable.mappings.present?
         Client.instance.indices.put_mapping(
           index: Client.configuration[:index].name,
