@@ -24,6 +24,6 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency 'rails'
   spec.add_runtime_dependency 'hashr', '~> 0.0.22'
-  spec.add_runtime_dependency 'elasticsearch', '~> 0.4.7'
+  spec.add_runtime_dependency 'elasticsearch', '~> 2.0.0'
   spec.add_runtime_dependency 'ruby-progressbar', '~> 1.2.0'
 end
